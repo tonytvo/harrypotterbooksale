@@ -1,15 +1,5 @@
-image:
-  file: .gitpod.Dockerfile
-
-tasks:
-  - name: Restore & Build
-    init: |
-      dotnet dev-certs https 
-      dotnet restore
-      dotnet build
-  - name: Run
-    command: dotnet run
-
+image: gitpod/workspace-dotnet
 vscode:
   extensions:
-    - Ionide.Ionide-fsharp
+    - Ionide.Ionide-fsharp@4.1.0:vk6avJmuBqlMwZEelzdnZQ==
+    - ms-vscode.csharp@1.21.4:lLV3lBwYKRTJ3QAQjtNMaQ==
