@@ -16,7 +16,8 @@ enum HARRY_POTTER_BOOK {
   FIRST,
   SECOND,
   THIRD,
-  FOURTH
+  FOURTH,
+  FIFTH,
 }
 
 class Order {
@@ -45,6 +46,7 @@ describe("HarryPotterBookSale tests", () => {
     expect(price(OrderBasket.add(HARRY_POTTER_BOOK.SECOND))).toBe(8);
     expect(price(OrderBasket.add(HARRY_POTTER_BOOK.THIRD))).toBe(8);
     expect(price(OrderBasket.add(HARRY_POTTER_BOOK.FOURTH))).toBe(8);
+    expect(price(OrderBasket.add(HARRY_POTTER_BOOK.FIFTH))).toBe(8);
   });
 
 });
