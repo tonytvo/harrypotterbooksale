@@ -1,8 +1,17 @@
-import { expect, describe, test } from "@jest/globals";
-import { HarryPotterBookSale } from "../src/HarryPotterBookSale";
+import {describe, expect, test} from "@jest/globals";
+
+class Order {
+  static empty() {
+    return new Order();
+  }
+}
 
 describe("HarryPotterBookSale tests", () => {
+  function price(order: Order) {
+    return 0;
+  }
+
   test("move", () => {
-    expect(true).toBe(false);
+    expect(price(Order.empty())).toBe(0);
   });
 });
