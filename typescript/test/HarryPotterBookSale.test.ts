@@ -14,7 +14,7 @@ describe("HarryPotterBookSale tests", () => {
     return 0;
   }
 
-  test("move", () => {
+  test("price of empty basket should be 0", () => {
     expect(price(OrderBasket.empty())).toBe(0);
   });
 });
