@@ -1,9 +1,12 @@
 import {describe, expect, test} from "@jest/globals";
 
-class Order {
+class OrderBasket {
   static empty() {
     return new Order();
   }
+}
+
+class Order {
 }
 
 describe("HarryPotterBookSale tests", () => {
@@ -12,6 +15,6 @@ describe("HarryPotterBookSale tests", () => {
   }
 
   test("move", () => {
-    expect(price(Order.empty())).toBe(0);
+    expect(price(OrderBasket.empty())).toBe(0);
   });
 });
