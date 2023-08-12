@@ -33,12 +33,15 @@ class Order {
   }
 
   getBooksQuantity() {
-    return this._quantityByType.size == 0 ? 0 : 1;
+    return this._quantityByType.size;
   }
 }
 
 describe("HarryPotterBookSale tests", () => {
   function price(order: Order) {
+    if (order.getBooksQuantity() == 2) {
+      return order.getBooksQuantity()*8*0.95;
+    }
     return order.getBooksQuantity()*8;
   }
 
@@ -50,12 +53,19 @@ describe("HarryPotterBookSale tests", () => {
     return new OrderBasket().add(harryPotterBook).build();
   }
 
-  test("price of basket of 1 copy of any five books ", () => {
+  test("price of basket of 1 copy of any five books", () => {
     expect(price(createOrder(HARRY_POTTER_BOOK.FIRST))).toBe(8);
     expect(price(createOrder(HARRY_POTTER_BOOK.SECOND))).toBe(8);
     expect(price(createOrder(HARRY_POTTER_BOOK.THIRD))).toBe(8);
     expect(price(createOrder(HARRY_POTTER_BOOK.FOURTH))).toBe(8);
     expect(price(createOrder(HARRY_POTTER_BOOK.FIFTH))).toBe(8);
+  });
+
+  test("price of basket of 2 different book should give 5% discount", () => {
+    expect(price(new OrderBasket()
+        .add(HARRY_POTTER_BOOK.FIRST)
+        .add(HARRY_POTTER_BOOK.SECOND)
+        .build())).toBe(8 * 2 * 0.95);
   });
 
 });
