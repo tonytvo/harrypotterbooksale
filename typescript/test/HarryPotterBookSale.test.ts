@@ -1,4 +1,5 @@
 import {describe, expect, test} from "@jest/globals";
+import {number} from "fp-ts";
 
 class OrderBasket {
   quantityByType = new Map<HARRY_POTTER_BOOK, number>();
@@ -37,6 +38,17 @@ class Order {
   }
 }
 
+class DiscountGroup {
+  private _differentBooks: number;
+  constructor(differentBooks: number) {
+    this._differentBooks = differentBooks;
+  }
+
+  static of(differentBook: number) {
+    return new DiscountGroup(differentBook);
+  }
+}
+
 describe("HarryPotterBookSale tests", () => {
   function price(order: Order) {
     if (order.getBooksQuantity() == 2) {
@@ -66,6 +78,17 @@ describe("HarryPotterBookSale tests", () => {
         .add(HARRY_POTTER_BOOK.FIRST)
         .add(HARRY_POTTER_BOOK.SECOND)
         .build())).toBe(8 * 2 * 0.95);
+  });
+
+  function possibleDiscountGroups(order: Order) {
+    return [DiscountGroup.of(2)];
+  }
+
+  test("price of basket of 2 different book should give 5% discount", () => {
+    expect(possibleDiscountGroups(new OrderBasket()
+        .add(HARRY_POTTER_BOOK.FIRST)
+        .add(HARRY_POTTER_BOOK.SECOND)
+        .build())).toEqual([DiscountGroup.of(2)]);
   });
 
 });
