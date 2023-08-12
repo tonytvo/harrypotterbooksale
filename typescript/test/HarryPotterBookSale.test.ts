@@ -1,14 +1,19 @@
 import {describe, expect, test} from "@jest/globals";
 
 class OrderBasket {
+  quantityByType = new Map<HARRY_POTTER_BOOK, number>();
+
   static empty() {
     return new Order(new Map<HARRY_POTTER_BOOK, number>());
   }
 
-  static add(harryPotterBook: HARRY_POTTER_BOOK) {
-    let quantityByType = new Map<HARRY_POTTER_BOOK, number>();
-    quantityByType.set(harryPotterBook, 1);
-    return new Order(quantityByType);
+  add(harryPotterBook: HARRY_POTTER_BOOK) {
+    this.quantityByType.set(harryPotterBook, 1);
+    return this;
+  }
+
+  build() {
+    return new Order(this.quantityByType);
   }
 }
 
@@ -42,7 +47,7 @@ describe("HarryPotterBookSale tests", () => {
   });
 
   function createOrder(harryPotterBook: HARRY_POTTER_BOOK) {
-    return OrderBasket.add(harryPotterBook);
+    return new OrderBasket().add(harryPotterBook).build();
   }
 
   test("price of basket of 1 copy of any five books ", () => {
