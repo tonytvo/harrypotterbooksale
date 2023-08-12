@@ -41,12 +41,16 @@ describe("HarryPotterBookSale tests", () => {
     expect(price(OrderBasket.empty())).toBe(0);
   });
 
+  function createOrder(harryPotterBook: HARRY_POTTER_BOOK) {
+    return OrderBasket.add(harryPotterBook);
+  }
+
   test("price of basket of 1 copy of any five books ", () => {
-    expect(price(OrderBasket.add(HARRY_POTTER_BOOK.FIRST))).toBe(8);
-    expect(price(OrderBasket.add(HARRY_POTTER_BOOK.SECOND))).toBe(8);
-    expect(price(OrderBasket.add(HARRY_POTTER_BOOK.THIRD))).toBe(8);
-    expect(price(OrderBasket.add(HARRY_POTTER_BOOK.FOURTH))).toBe(8);
-    expect(price(OrderBasket.add(HARRY_POTTER_BOOK.FIFTH))).toBe(8);
+    expect(price(createOrder(HARRY_POTTER_BOOK.FIRST))).toBe(8);
+    expect(price(createOrder(HARRY_POTTER_BOOK.SECOND))).toBe(8);
+    expect(price(createOrder(HARRY_POTTER_BOOK.THIRD))).toBe(8);
+    expect(price(createOrder(HARRY_POTTER_BOOK.FOURTH))).toBe(8);
+    expect(price(createOrder(HARRY_POTTER_BOOK.FIFTH))).toBe(8);
   });
 
 });
